@@ -1,7 +1,9 @@
 import { useState, useRef, useEffect } from "react";
+import { useNavigate } from 'react-router-dom'
 import AllPlayers from "../../components/players/AllPlayers";
 
 const AddPlayer = (props) => {
+	const navigate = useNavigate()
   const formElement = useRef()
   const [validForm, setValidForm] = useState(false)
   const [formData, setFormData] = useState({
@@ -23,6 +25,12 @@ const AddPlayer = (props) => {
     evt.preventDefault()
     props.handleAddPlayer(formData)
   }
+
+	const handleStartMatch = () => {
+		
+		navigate('/bracket')
+	}
+
 
 	return (
 		<div>
@@ -63,6 +71,7 @@ const AddPlayer = (props) => {
 				</div>
 			</form>
 			<AllPlayers players={props.players} />
+			<button onClick={handleStartMatch} className="button">Fill bracket and start match</button>
 		</div>
 	)
 }

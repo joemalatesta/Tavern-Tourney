@@ -3,16 +3,19 @@ import { getGameRace } from '../../services/services';
 import SingleMatchPlayerLine from "./SingleMatchPlayerLine";
 
 const SingleMatch = (props) => {
+  const [races, setRaces] = useState();
   let sortedPlayers
   if(props.match.length === 2 ){
     sortedPlayers = [...props.match].sort((a, b) => b.rank - a.rank);
   }
- 
   const [player, setPlayer] = useState(sortedPlayers?.map(player => ({
     ...player,
     gamesNeededToWin: ''
   })))
-  const [races, setRaces] = useState();
+  
+  
+  
+  
   
   useEffect(() => {
     getFirstPlayer(props.match)

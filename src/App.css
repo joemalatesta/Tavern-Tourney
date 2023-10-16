@@ -1,7 +1,14 @@
+
 :root {
   display: flex;
+  
   background-color: black;
   color: antiquewhite;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
 }
 
 .match-bracket {
@@ -15,7 +22,24 @@
   cursor: pointer;
   transition: border-color 0.25s;
   margin: 10px;
+  background-image: url(../public/felt.jpg);
+  background-size: contain;
 }
+
+.button {
+  border-radius: 8px;
+  border: 1px solid white;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: antiquewhite#1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  margin: 10px;
+  background-size: contain;
+}
+
 
 .center {
   display: flex;
@@ -35,9 +59,9 @@
 }
 
 .flex {
+  width: 100%;
   display: flex;
-  justify-content: space-between;
-
+  justify-content: space-around;
 }
 
 .first-two-games {

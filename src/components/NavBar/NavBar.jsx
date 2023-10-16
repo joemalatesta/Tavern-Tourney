@@ -5,18 +5,17 @@ const NavBar = ({ user, handleLogout }) => {
   return (
     <nav>
       {user ?
-        <ul>
-          <li>Welcome, {user.name}</li>
-          <li><NavLink to="" onClick={handleLogout}>LOG OUT</NavLink></li>
-          <li><NavLink to="/auth/change-password">Change Password</NavLink></li>
-          <li><NavLink to="/add-player">Add Player</NavLink></li>
-          <li><NavLink to="/bracket">Bracket</NavLink></li>
-        </ul>
+        <div className='flex'>
+          <NavLink to='/'>Welcome {user.name}</NavLink>
+          <NavLink to="/add-player">Add Player </NavLink>
+          <NavLink to="" onClick={handleLogout}>LOG OUT</NavLink>
+          <NavLink to="/auth/change-password">Change Password</NavLink>
+        </div>
       :
-        <ul>
-          <li><NavLink to="/auth/login">Log In</NavLink></li>
-          <li><NavLink to="/auth/signup">Sign Up</NavLink></li>
-        </ul>
+        <>
+          <NavLink to="/auth/login">Log In</NavLink>
+          <NavLink to="/auth/signup">Sign Up</NavLink>
+        </>
       }
     </nav>
   )

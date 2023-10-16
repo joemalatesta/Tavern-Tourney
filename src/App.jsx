@@ -25,7 +25,7 @@ import './App.css'
 
 
 function App() {
-  const [playMatch, setPlayMatch] = useState(true)
+  const [playMatch, setPlayMatch] = useState(false)
   const [players, setPlayers] = useState([])
   const [user, setUser] = useState(authService.getUser())
   const navigate = useNavigate()
@@ -61,7 +61,7 @@ function App() {
 
   return (
     <>
-      <NavBar user={user} handleLogout={handleLogout} />
+      <NavBar playMatch={playMatch} user={user} handleLogout={handleLogout} />
       <Routes>
         <Route path="/" element={<Landing user={user} players={players}/>} />
         <Route
@@ -83,7 +83,7 @@ function App() {
         <Route
           disable={isDisabled}
           path="/add-player"
-          element={<AddPlayer handleAddPlayer={handleAddPlayer} players={players}/>}
+          element={<AddPlayer playMatch={playMatch} isDisabled={isDisabled} handleAddPlayer={handleAddPlayer} players={players}/>}
         />
         <Route
           path="/auth/change-password"
