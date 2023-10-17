@@ -21,6 +21,7 @@ const NavBar = ({ user, handleLogout }) => {
         </div>
       :
         <div className='nav-bar'>
+          <NavLink to='/'>Home</NavLink>
           <NavLink to='/view-brackets'>View Brackets</NavLink>
           <NavLink></NavLink>
           <NavLink to="/auth/login">Log In</NavLink>

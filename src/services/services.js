@@ -1,5 +1,3 @@
-
-
 export function getGameRace (player1, player2){
   if(player1.name === 'bye' || player2.name === 'bye') return 'No game'
   
@@ -25,7 +23,7 @@ export function getGameRace (player1, player2){
     if(difference <= 6) return ['4','4']
     if(difference > 6 && difference < 19) return ['4','3']
     if(difference >= 19 && difference < 30) return ['5','3']
-    if(difference >= 30 && difference <= 39) return ['4','2']
+    if(difference >= 30 && difference < 40) return ['4','2']
     if(difference >= 40 && difference < 49) return ['5','2']
     if(difference >= 49 && difference < 69) return ['6','2']
     if(difference >= 69 ) return ['5','2']
@@ -65,6 +63,7 @@ export function getGameRace (player1, player2){
 }
 
 export function shuffleAndSplitIntoTuples (players) {
+  if (players.length === 0) return
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));

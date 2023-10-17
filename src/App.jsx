@@ -10,7 +10,7 @@ import Profiles from './pages/Profiles/Profiles'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 import AddPlayer from './pages/AddPlayers/AddPlayer'
 import ViewBrackets from './pages/ViewBrackets/ViewBrackets'
-import AddPlayerToMatch from './pages/AddPlayerToMatch/AddPlayerToMatch'
+import CreateMatch from './pages/AddPlayerToMatch/CreateMatch'
 
 // components
 import NavBar from './components/NavBar/NavBar'
@@ -19,17 +19,22 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 // services
 import * as authService from './services/authService'
 import * as playerService from './services/playerService'
+import * as matchService from './services/matchService'
 import * as services from './services/services'
 // styles
 import './App.css'
+import Bracket from './components/bracket/Bracket'
 
 
 
 function App() {
+  const navigate = useNavigate()
   const [playMatch, setPlayMatch] = useState(false)
   const [players, setPlayers] = useState([])
   const [user, setUser] = useState(authService.getUser())
-  const navigate = useNavigate()
+  const [tourneyMatch, setTourneyMatch] = useState()
+  const [singleMatch, setSingleMatch] = useState()
+  let touples
 
   useEffect(() => {
     const fetchPlayers = async () => {
@@ -37,6 +42,14 @@ function App() {
       setPlayers(data)
     }
     fetchPlayers()
+  }, []);
+
+  useEffect(() => {
+    const fetchMatch = async () => {
+      const data = await matchService.index()
+      setTourneyMatch(data)
+    }
+    fetchMatch()
   }, []);
 
   const handleLogout = () => {
@@ -54,11 +67,15 @@ function App() {
     setPlayers([...players, newPlayer])
   }
 
-  const touples = services.shuffleAndSplitIntoTuples(players);
+  const handleTouples = () => {
+    touples = services?.shuffleAndSplitIntoTuples(singleMatch);
+  }
 
   const isDisabled = () => {
     setPlayMatch(!playMatch)
   }
+
+  
 
   return (
     <>
@@ -95,7 +112,7 @@ function App() {
           path="/add-players-to-match"
           element={    
             <ProtectedRoute user={user}>
-            <AddPlayerToMatch 
+            <CreateMatch 
               playMatch={playMatch}   
               isDisabled={isDisabled} 
               handleAddPlayer={handleAddPlayer} 
@@ -115,7 +132,11 @@ function App() {
         />
          <Route 
           path="/view-brackets"
-          element={<ViewBrackets />}
+          element={<ViewBrackets handleTouples={handleTouples} setSingleMatch={setSingleMatch} tourneyMatch={tourneyMatch}/>}
+        />
+        <Route 
+          path='bracket'
+          element={<Bracket touples={touples} /> } 
         />
    
       </Routes>

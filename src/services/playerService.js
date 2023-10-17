@@ -22,7 +22,17 @@ async function index() {
   }
 }
 
+async function findOne(id) {
+  try{
+    const res = await fetch(BASE_URL + `/${id}`)
+    return res.json()
+  }catch (err) {
+    console.log(err);
+  }
+}
+
 export {
   index,
-  create
+  create,
+  findOne
 }

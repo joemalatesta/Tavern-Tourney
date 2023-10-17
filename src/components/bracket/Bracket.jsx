@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import ThreeBracket from './ThreeBracket';
-
 import { toupleOfTouples } from '../../services/services';
 
 const Bracket = ({touples}) => {
+  
   const [twoMatch, setTwoMatch] = useState([])
 
 
@@ -13,8 +13,8 @@ const Bracket = ({touples}) => {
 
   return (
     <div className='match-bracket green-felt'>
-      {twoMatch.map((match)=>(
-        <ThreeBracket key={Math.random()} match={match}/>
+      {twoMatch?.map((match)=>(
+        <ThreeBracket key={Math?.random()} match={match}/>
       ))}
     </div>
   );
