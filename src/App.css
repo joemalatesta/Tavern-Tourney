@@ -1,9 +1,21 @@
-
 :root {
   display: flex;
-  
   background-color: black;
   color: antiquewhite;
+  background-image: url('cartoonDogs.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size:cover;
+  min-height: 100vh;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.landing-bg {
 }
 
 body {
@@ -41,11 +53,6 @@ body {
 }
 
 
-.center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
 .start {
   display: flex;
@@ -74,7 +81,3 @@ body {
   justify-content: center;
 }
 
-.background {
-  background-image: url('felt.jpg');
-  background-size: contain;
-}
