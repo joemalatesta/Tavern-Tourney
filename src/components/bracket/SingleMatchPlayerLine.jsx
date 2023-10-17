@@ -1,10 +1,9 @@
 import { useState } from "react"
 
-const SingleMatchPlayerLine = ({player, setWinnerMatch}) => {
+const SingleMatchPlayerLine = ({player, setWinnerMatch, hiddenWinnerButton, setHiddenWinnerButton}) => {
   const [selectedGames, setSelectedGames] = useState([]);
   const gameCheckboxes = []
-  const [winnerCheckbox, setWinnerCheckbox] = useState(false)
-
+ 
   function handleCheckboxChange(gameNumber) {
     if (selectedGames.includes(gameNumber)) {
       setSelectedGames(selectedGames.filter((game) => game !== gameNumber));
@@ -28,6 +27,7 @@ const SingleMatchPlayerLine = ({player, setWinnerMatch}) => {
 
   const isWinner = (name) => {
     console.log(`${name.name} is the winner!`);
+    setHiddenWinnerButton(true)
     setWinnerMatch(name)
 
   }
@@ -37,10 +37,12 @@ const SingleMatchPlayerLine = ({player, setWinnerMatch}) => {
       <div className="start">
         {player.name} ({player.rank}) {gameCheckboxes} 
       </div>
-      <div className="end">winner<input
-          type="checkbox"
-          onChange={()=>isWinner(player)}
+      {hiddenWinnerButton === false && 
+        <div className="end">winner<input
+        type="checkbox"
+        onChange={()=>isWinner(player)}
         /></div> 
+    }
       
     </div>
   )

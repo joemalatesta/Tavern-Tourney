@@ -21,7 +21,7 @@ const ThreeBracket = (props) => {
           <p className='match-bracket' >No Match yet</p>
         :  
           winner.length == 1 ? 
-          <p>{winner[0].name} vs winner of next match</p>
+          <p className='match-bracket' >{winner[0].name} vs </p>
           :
           <SingleMatch match={winner}/>
           

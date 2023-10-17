@@ -3,7 +3,8 @@ import { getGameRace } from '../../services/services';
 import SingleMatchPlayerLine from "./SingleMatchPlayerLine";
 
 const SingleMatch = (props) => {
-  const [races, setRaces] = useState();
+  const [hiddenWinnerButton, setHiddenWinnerButton] = useState(false);
+  
   let sortedPlayers
   if(props.match.length === 2 ){
     sortedPlayers = [...props.match].sort((a, b) => b.rank - a.rank);
@@ -46,7 +47,7 @@ const SingleMatch = (props) => {
     <div className="match-bracket">
       {player?.map(player =>(
         <div key={player._id}>
-          <SingleMatchPlayerLine setWinnerMatch={props.setWinnerMatch} key={player._id} player={player} />
+          <SingleMatchPlayerLine hiddenWinnerButton={hiddenWinnerButton} setHiddenWinnerButton={setHiddenWinnerButton} setWinnerMatch={props.setWinnerMatch} key={player._id} player={player} />
         </div>
       ))}
     </div>
