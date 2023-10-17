@@ -5,7 +5,7 @@ const NavBar = ({ user, handleLogout }) => {
   return (
     <nav>
       {user ?
-        <div className='flex'>
+        <div className='nav-bar'>
           <NavLink to='/'>Welcome {user.name}</NavLink>
           <NavLink to="/add-player">Add Player </NavLink>
           <NavLink to="" onClick={handleLogout}>LOG OUT</NavLink>

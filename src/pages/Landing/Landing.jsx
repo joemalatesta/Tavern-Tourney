@@ -1,11 +1,12 @@
 
-const Landing = ({ user }) => {
+const Landing = () => {
 
 
   return (
-    <main className="landing-bg">
+    <main className="center green-felt flex-column">
       <h1>Tavern's Tourney's</h1>
-      <h3>hello, {user ? user.name : 'friend'}</h3>
+      <h2>Click a match to view the bracket.</h2>
+      
     </main>
   )
 }

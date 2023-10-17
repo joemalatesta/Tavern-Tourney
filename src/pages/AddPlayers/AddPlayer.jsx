@@ -33,8 +33,8 @@ const AddPlayer = (props) => {
 
 
 	return (
-		<div>
-			<h1 className="center">Add Player</h1>
+		<div className="match-bracket green-felt">
+			<h1 className="center">Add/Remove Players to Match</h1>
 			<form className="center" autoComplete="off" ref={formElement} onSubmit={handleSubmit}>
 				<div className="center">
 					<label className="center">
@@ -70,8 +70,8 @@ const AddPlayer = (props) => {
 					</button>
 				</div>
 			</form>
-			<AllPlayers players={props.players} />
-			<button onClick={handleStartMatch} className="button">Fill bracket and start match</button>
+			<AllPlayers  players={props.players} />
+			<button onClick={handleStartMatch} >Fill bracket and start match</button>
 		</div>
 	)
 }
