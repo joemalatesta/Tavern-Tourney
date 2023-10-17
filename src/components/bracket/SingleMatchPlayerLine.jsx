@@ -33,12 +33,12 @@ const SingleMatchPlayerLine = ({player, setWinnerMatch, hiddenWinnerButton, setH
   }
 
   return ( 
-    <div className="flex">
-      <div className="start">
+    <div className="">
+      <div className="">
         {player.name} ({player.rank}) {gameCheckboxes} 
       </div>
       {hiddenWinnerButton === false && 
-        <div className="end">winner<input
+        <div className="">winner<input
         type="checkbox"
         onChange={()=>isWinner(player)}
         /></div> 

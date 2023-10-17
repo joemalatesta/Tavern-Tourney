@@ -44,10 +44,15 @@ const SingleMatch = (props) => {
   }
 
   return (
-    <div className="match-bracket">
+    <div className="">
       {player?.map(player =>(
         <div key={player._id}>
-          <SingleMatchPlayerLine hiddenWinnerButton={hiddenWinnerButton} setHiddenWinnerButton={setHiddenWinnerButton} setWinnerMatch={props.setWinnerMatch} key={player._id} player={player} />
+          <SingleMatchPlayerLine 
+            hiddenWinnerButton={hiddenWinnerButton} 
+            setHiddenWinnerButton={setHiddenWinnerButton} 
+            setWinnerMatch={props.setWinnerMatch} 
+            key={player._id} 
+            player={player} />
         </div>
       ))}
     </div>

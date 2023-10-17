@@ -12,11 +12,11 @@ const Bracket = ({touples}) => {
   }, [touples]);
 
   return (
-    <>
+    <div className='match-bracket'>
       {twoMatch.map((match)=>(
         <ThreeBracket key={Math.random()} match={match}/>
       ))}
-    </>
+    </div>
   );
 };
 
