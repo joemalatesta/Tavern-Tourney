@@ -41,9 +41,9 @@ const LoginPage = ({ handleAuthEvt }) => {
   }
 
   return (
-    <main>
-      <h1>Log In</h1>
-      <p>{message}</p>
+    <main className='green-felt width'>
+      <h1 className='center'>Log In</h1>
+      <p className='center'>{message}</p>
       <form autoComplete="off" onSubmit={handleSubmit}>
         <label>
           Email
@@ -54,8 +54,9 @@ const LoginPage = ({ handleAuthEvt }) => {
             onChange={handleChange}
           />
         </label>
+        <br/>
         <label>
-          Password
+          Password:
           <input
             type="password"
             value={password}

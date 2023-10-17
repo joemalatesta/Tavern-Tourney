@@ -9,8 +9,9 @@ import Landing from './pages/Landing/Landing'
 import Profiles from './pages/Profiles/Profiles'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 import AddPlayer from './pages/AddPlayers/AddPlayer'
-import Bracket from './components/bracket/Bracket'
-import ThreeBracket from './components/bracket/ThreeBracket'
+import ViewBrackets from './pages/ViewBrackets/ViewBrackets'
+import AddPlayerToMatch from './pages/AddPlayerToMatch/AddPlayerToMatch'
+
 // components
 import NavBar from './components/NavBar/NavBar'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
@@ -83,8 +84,27 @@ function App() {
         <Route
           disable={isDisabled}
           path="/add-player"
-          element={<AddPlayer playMatch={playMatch} isDisabled={isDisabled} handleAddPlayer={handleAddPlayer} players={players}/>}
+          element={    
+          <ProtectedRoute user={user}>
+              <AddPlayer playMatch={playMatch} isDisabled={isDisabled} handleAddPlayer={handleAddPlayer} players={players}/>
+          </ProtectedRoute>
+          }
         />
+        <Route
+          disable={isDisabled}
+          path="/add-players-to-match"
+          element={    
+            <ProtectedRoute user={user}>
+            <AddPlayerToMatch 
+              playMatch={playMatch}   
+              isDisabled={isDisabled} 
+              handleAddPlayer={handleAddPlayer} 
+              players={players}
+            />
+            </ProtectedRoute>
+          }
+        />    
+          
         <Route
           path="/auth/change-password"
           element={
@@ -94,8 +114,8 @@ function App() {
           }
         />
          <Route 
-          path="/bracket"
-          element={<Bracket touples={touples}/>}
+          path="/view-brackets"
+          element={<ViewBrackets />}
         />
    
       </Routes>
