@@ -44,7 +44,7 @@ const SingleMatch = (props) => {
   }
 
   return (
-    <div className="">
+    <div className="bracket">
       {player?.map(player =>(
         <div key={player._id}>
           <SingleMatchPlayerLine 
