@@ -63,7 +63,7 @@ export function getGameRace (player1, player2){
 }
 
 export function shuffleAndSplitIntoTuples (players) {
-  if (players.length === 0) return
+ 
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));

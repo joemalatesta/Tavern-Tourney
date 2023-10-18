@@ -6,18 +6,21 @@ const Bracket = ({touples}) => {
   
   const [twoMatch, setTwoMatch] = useState([])
 
+  console.log(touples);
 
   useEffect(() => {
     setTwoMatch(toupleOfTouples(touples))
   }, [touples]);
 
   return (
-    <div className='match-bracket green-felt'>
-      {twoMatch?.map((match)=>(
-        <ThreeBracket key={Math?.random()} match={match}/>
-      ))}
-    </div>
-  );
-};
-
-export default Bracket;
+      <>
+        <div className='match-bracket green-felt'>
+          {twoMatch?.map((match)=>(
+            <ThreeBracket key={Math?.random()} match={match}/>
+            ))}
+        </div>
+      </>
+    );
+  };
+  
+  export default Bracket;

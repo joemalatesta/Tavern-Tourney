@@ -5,14 +5,12 @@ const ViewBrackets = (props) => {
   const navigate = useNavigate()
   console.log(props.tourneyMatch);
   
-  const handleClick = async (game) => {
-    console.log(game);
-    
-    
-    playerService.findOne(game.players)
-    await props.setSingleMatch(game.players)
-
-    await props.handleTouples
+  const handleGetMatch = async (game) => {
+    const playerObj = await Promise.all(game.players.map(player =>
+      playerService.findOne(player)
+    ));
+    console.log(playerObj);
+    await props.handleTouples(playerObj)
     navigate('/bracket')
   }
  
@@ -21,7 +19,7 @@ const ViewBrackets = (props) => {
       <div className="match-bracket green-felt">
         {props.tourneyMatch.map(game => (
           <div key={game._id}>
-            <button onClick={()=>handleClick(game)}>{ game.name } : {game.enum}</button> 
+            <button onClick={()=>handleGetMatch(game)}>{ game.name } : {game.enum}</button> 
               
           </div>
           )

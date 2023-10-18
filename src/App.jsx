@@ -67,8 +67,10 @@ function App() {
     setPlayers([...players, newPlayer])
   }
 
-  const handleTouples = () => {
-    touples = services?.shuffleAndSplitIntoTuples(singleMatch);
+  const handleTouples = (players) => {
+    
+    setSingleMatch(services.shuffleAndSplitIntoTuples(players))
+    
   }
 
   const isDisabled = () => {
@@ -132,11 +134,13 @@ function App() {
         />
          <Route 
           path="/view-brackets"
-          element={<ViewBrackets handleTouples={handleTouples} setSingleMatch={setSingleMatch} tourneyMatch={tourneyMatch}/>}
+          element={<ViewBrackets 
+            handleTouples={handleTouples} 
+            tourneyMatch={tourneyMatch}/>}
         />
         <Route 
           path='bracket'
-          element={<Bracket touples={touples} /> } 
+          element={<Bracket touples={singleMatch} /> } 
         />
    
       </Routes>
