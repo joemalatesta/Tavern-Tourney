@@ -12,18 +12,20 @@ const ThreeBracket = (props) => {
   return ( 
     <>
     <div className="flex">
-      <div className="">
+      <div className="match-width">
         <SingleMatch setWinnerMatch={matchWinners} match={props.match[0]}/>
         <SingleMatch setWinnerMatch={matchWinners} match={props.match[1]}/>
       </div>
-      <div className="flex-justify">
+      <div className="flex-justify match-width">
         {winner.length === 0 ?
-          <p className='bracket red-felt flex-justify' >Play match to get a winner</p>
+          <p className='bracket red-felt flex-justify match-width' >Play match to get a winner</p>
         :  
           winner.length == 1 ? 
-          <p className='bracket red-felt' >{winner[0].name} vs </p>
+          <p className='bracket red-felt match-width' >{winner[0].name} vs </p>
           :
-          <SingleMatch match={winner}/>
+          <div className='match-width'>
+            <SingleMatch match={winner}/>
+          </div>
           
         }
       </div>

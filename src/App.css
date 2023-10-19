@@ -96,6 +96,13 @@ a:visited {
   flex-direction: column;
   justify-content: center;
 }
+
+.match-width {
+  width: 470px;
+}
+.bold {
+  font-weight: 900;
+}
 /* ***************************************************************************************************** */
 
 /* 

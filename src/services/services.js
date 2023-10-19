@@ -65,6 +65,7 @@ export function getGameRace (player1, player2){
 
 export function shuffleAndSplitIntoTuples (players) {
   addByePlayers(players)
+  console.log(players);
   function shuffleArray(array) {
     for (let i = array?.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -74,11 +75,13 @@ export function shuffleAndSplitIntoTuples (players) {
   let myArray = players
   shuffleArray(myArray)
   let playerTuples = []
+  console.log(myArray);
   
   for(let i = 0; i < myArray.length; i=i+2){
     
     playerTuples.push([myArray[i],myArray[i+1]])
   }
+  console.log(playerTuples);
   return playerTuples
 }
 
@@ -100,31 +103,38 @@ export function addByePlayers (players) {
   const calcByesNeeded = (num) => {
     for(let i = 0; i < num ; i++){
       players.push({
+        _id: Math.random(),
         name: 'Bye',
-        _id: Math.random()
+        rank: 0
       })
     }
   }
-
+  
   if(players.length > 2 && players.length <= 4 ){
+    console.log('hit 2-4');
     num = 4 - players.length
     calcByesNeeded(num)
   }
-  if(players.length > 4 && players.length <= 7 ){
-    num = 8 - players.length
+  if(players.length > 4 && players.length < 8 ){
+    console.log('hit 4-8');
+    num = (8 - players.length)
     calcByesNeeded(num)
   }
-  if(players.length > 7 && players.length <= 16 ){
+  if(players.length > 8 && players.length <= 16 ){
+    console.log('hit 8-16');
     num = 16 - players.length
     calcByesNeeded(num)
   }
-  if(players.length > 16 && players.length <= 32 ){
+  if(players.length > 16 && players.length < 32 ){
+    console.log('hit 16-32');
     num = 32 - players.length
     calcByesNeeded(num)
   }
-  if(players.length > 32 && players.length <= 64 ){
+  if(players.length > 32 && players.length < 64 ){
+    console.log('hit 32-64');
     num = 64 - players.length
     calcByesNeeded(num)
   }
+  console.log('this is the number of byes added to the match and the player.length', num, players.length);
 }
 
