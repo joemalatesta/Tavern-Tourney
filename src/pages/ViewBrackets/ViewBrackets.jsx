@@ -1,9 +1,11 @@
 import { useNavigate } from "react-router-dom"
 import * as playerService from '../../services/playerService'
+import * as matchService from '../../services/matchService'
+import { useEffect, useState } from "react";
 
 const ViewBrackets = (props) => {
   const navigate = useNavigate()
-  console.log(props.tourneyMatch);
+  const [tourney, setTourney] = useState()
   
   const handleGetMatch = async (game) => {
     const playerObj = await Promise.all(game.players.map(player =>
@@ -14,18 +16,25 @@ const ViewBrackets = (props) => {
     navigate('/bracket')
   }
  
+  useEffect(() => {
+    const fetchMatches = async () => {
+      const data = await matchService.index()
+      setTourney(data)
+    }
+    fetchMatches()
+  }, []);
+
+
   return (
     <>
       <div className="match-bracket green-felt">
-        {props.tourneyMatch.map(game => (
+        {tourney?.map(game => (
           <div key={game._id}>
             <button onClick={()=>handleGetMatch(game)}>{ game.name } : {game.enum}</button> 
               
           </div>
           )
         )}  
-      
-    
       </div>
     </>
   )

@@ -90,6 +90,12 @@ a:visited {
   display: flex;
   justify-content: space-between;
 }
+
+.column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 /* ***************************************************************************************************** */
 
 /* 
@@ -116,9 +122,5 @@ a:visited {
   display: grid;
 }
 
-.final-match-game {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
+
  */

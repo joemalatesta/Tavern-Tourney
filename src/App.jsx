@@ -67,6 +67,11 @@ function App() {
     setPlayers([...players, newPlayer])
   }
 
+  const handleAddMatch = async (newMatchData) => {
+    const newMatch = await matchService.create(newMatchData)
+    setTourneyMatch([...tourneyMatch, newMatch])
+  }
+
   const handleTouples = (players) => {
     
     setSingleMatch(services.shuffleAndSplitIntoTuples(players))
@@ -114,12 +119,13 @@ function App() {
           path="/add-players-to-match"
           element={    
             <ProtectedRoute user={user}>
-            <CreateMatch 
-              playMatch={playMatch}   
-              isDisabled={isDisabled} 
-              handleAddPlayer={handleAddPlayer} 
-              players={players}
-            />
+              <CreateMatch
+
+                playMatch={playMatch}   
+                isDisabled={isDisabled} 
+                handleAddMatch={handleAddMatch} 
+                players={players}
+              />
             </ProtectedRoute>
           }
         />    
