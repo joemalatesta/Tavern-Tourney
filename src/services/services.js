@@ -1,5 +1,6 @@
 export function getGameRace (player1, player2){
-  if(player1.name === 'bye' || player2.name === 'bye') return 'No game'
+  console.log(player1,player2);
+  if(player1?.name === 'bye' || player2?.name === 'bye') return 'No game'
   
   let highest = Math.max(player1.rank , player2.rank)
   let lowest = Math.min(player1.rank , player2.rank)
@@ -63,9 +64,9 @@ export function getGameRace (player1, player2){
 }
 
 export function shuffleAndSplitIntoTuples (players) {
- 
+  addByePlayers(players)
   function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
+    for (let i = array?.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];
     }
@@ -87,12 +88,43 @@ export function toupleOfTouples (playerTouples) {
   return fourTeamTouple
 }
 
-export default function getFirstPlayer  (game) {
+export function getFirstPlayer  (game) {
   function compareByValue(a, b) {
     return a.rank - b.rank;
   }
   game.sort(compareByValue)
 }
 
+export function addByePlayers (players) {
+  let num
+  const calcByesNeeded = (num) => {
+    for(let i = 0; i < num ; i++){
+      players.push({
+        name: 'Bye',
+        _id: Math.random()
+      })
+    }
+  }
 
+  if(players.length > 2 && players.length <= 4 ){
+    num = 4 - players.length
+    calcByesNeeded(num)
+  }
+  if(players.length > 4 && players.length <= 7 ){
+    num = 8 - players.length
+    calcByesNeeded(num)
+  }
+  if(players.length > 7 && players.length <= 16 ){
+    num = 16 - players.length
+    calcByesNeeded(num)
+  }
+  if(players.length > 16 && players.length <= 32 ){
+    num = 32 - players.length
+    calcByesNeeded(num)
+  }
+  if(players.length > 32 && players.length <= 64 ){
+    num = 64 - players.length
+    calcByesNeeded(num)
+  }
+}
 

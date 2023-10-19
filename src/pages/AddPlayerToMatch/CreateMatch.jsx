@@ -10,7 +10,7 @@ const CreateMatch = (props) => {
   const [formData, setFormData] = useState({
     name: '',
     gameType: '',
-    players: [],
+    matchPlayers: []
   })
   const [players, setPlayers] = useState(props.players)
   
@@ -34,26 +34,14 @@ const CreateMatch = (props) => {
   }
 
   const handleChange = evt => {
-    const { name, value } = evt.target;
-  
-    if (name === "players") {
-      // If the input name is "players," update the formData.players property
-      setFormData(prevData => ({
-        ...prevData,
-        players: match
-      }));
-    } else {
-      // For other input fields, update the formData as usual
-      setFormData(prevData => ({
-        ...prevData,
-        [name]: value
-      }));
-    }
-  };
+		setFormData({ ...formData, [evt.target.name]: evt.target.value })
+  }
 
-  const handleSubmit = evt => {
+  const handleSubmit = async evt => {
     evt.preventDefault()
-    props.handleAddMatch(formData)
+    const updatedFormData = { ...formData, matchPlayers: match };
+    await props.handleAddMatch(updatedFormData)
+    console.log('this is the formdata at submit', updatedFormData);
     navigate('/view-brackets')
   }
   console.log('I am showing an array of object players here',match);//I am showing an array of object players here
@@ -82,7 +70,7 @@ const CreateMatch = (props) => {
           onChange={handleChange}
           required
         />
-        <button>Create Match</button>
+        <button type="submit">Create Match</button>
       </form>
       
       <section className="bracket flex">

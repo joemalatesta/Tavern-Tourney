@@ -4,9 +4,9 @@ import SingleMatchPlayerLine from "./SingleMatchPlayerLine";
 
 const SingleMatch = (props) => {
   const [hiddenWinnerButton, setHiddenWinnerButton] = useState(false);
-  
+  console.log(props);
   let sortedPlayers
-  if(props.match.length === 2 ){
+  if(props?.match?.length === 2 ){
     sortedPlayers = [...props.match].sort((a, b) => b.rank - a.rank);
   }
   const [player, setPlayer] = useState(sortedPlayers?.map(player => ({
@@ -24,6 +24,8 @@ const SingleMatch = (props) => {
 
   function getFirstPlayer(game) {
     let sortedGame
+    console.log(game);
+    if(game[0].name === 'Bye' || game[1].name === 'Bye')return
     if(game?.length === 2 ){
       sortedGame = [...game].sort((a, b) => a.rank - b.rank);
       let races = getGameRace(sortedGame[0], sortedGame[1]);

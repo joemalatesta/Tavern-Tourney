@@ -8,7 +8,8 @@ const ViewBrackets = (props) => {
   const [tourney, setTourney] = useState()
   
   const handleGetMatch = async (game) => {
-    const playerObj = await Promise.all(game.players.map(player =>
+    console.log(game);
+    const playerObj = await Promise.all(game.matchPlayers.map(player =>
       playerService.findOne(player)
     ));
     console.log(playerObj);
@@ -30,7 +31,7 @@ const ViewBrackets = (props) => {
       <div className="match-bracket green-felt">
         {tourney?.map(game => (
           <div key={game._id}>
-            <button onClick={()=>handleGetMatch(game)}>{ game.name } : {game.enum}</button> 
+            <button onClick={()=>handleGetMatch(game)}>{ game.name } : {game.gameType}</button> 
               
           </div>
           )
