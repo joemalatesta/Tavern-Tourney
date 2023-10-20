@@ -35,8 +35,19 @@ async function update(match) {
   return res.json()
 }
 
+async function deleteOne(id) {
+  const res = await fetch(`${BASE_URL}/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Authorization': `Bearer ${tokenService.getToken()}`
+    }
+  })
+  return res.json()
+}
+
 export {
   index,
   create,
-  update
+  update,
+  deleteOne,
 }

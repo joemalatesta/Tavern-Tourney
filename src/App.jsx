@@ -52,14 +52,14 @@ function App() {
     fetchMatch()
   }, []);
 
-  useEffect(() => {
-    const handleUpdateMatch = async (matchData) => {
-      console.log();
-      const updatedMatch = await playerService.update(matchData)
-      setTourneyMatch([...tourneyMatch, updatedMatch])
-    }
-    handleUpdateMatch()
-  }, [tourneyMatch]);
+  // useEffect(() => {
+  //   const handleUpdateMatch = async (matchData) => {
+  //     console.log();
+  //     const updatedMatch = await matchService.update(matchData)
+  //     setTourneyMatch([...tourneyMatch, updatedMatch])
+  //   }
+  //   handleUpdateMatch()
+  // }, [tourneyMatch]);
 
 
   const handleLogout = () => {
@@ -77,15 +77,23 @@ function App() {
     setPlayers([...players, newPlayer])
   }
 
+  const handleDeletePlayer = async id => {
+    const deletedPlayer = await playerService.deleteOne(id)
+    setPlayers(players.filter(player => player._id !== deletedPlayer._id))
+  }
+
   const handleAddMatch = async (newMatchData) => {
     const newMatch = await matchService.create(newMatchData)
     setTourneyMatch([...tourneyMatch, newMatch])
   }
 
+  const handleDeleteMatch = async id => {
+    const deletedMatch = await matchService.deleteOne(id)
+    setTourneyMatch(tourneyMatch.filter(match=> match._id !== deletedMatch._id))
+  }
+  
   const handleTuples = (players) => {
-    
-    setSingleMatch(services.shuffleAndSplitIntoTuples(players))
-    
+    setSingleMatch(services.SplitIntoTuples(players))
   }
 
   const isDisabled = () => {
@@ -125,7 +133,13 @@ function App() {
           path="/add-player"
           element={    
           <ProtectedRoute user={user}>
-              <AddPlayer playMatch={playMatch} isDisabled={isDisabled} handleAddPlayer={handleAddPlayer} players={players}/>
+              <AddPlayer 
+                players={players}
+                playMatch={playMatch} 
+                isDisabled={isDisabled} 
+                handleAddPlayer={handleAddPlayer} 
+                handleDeletePlayer={handleDeletePlayer}
+              />
           </ProtectedRoute>
           }
         />
@@ -156,8 +170,13 @@ function App() {
          <Route 
           path="/view-brackets"
           element={<ViewBrackets 
+            setTourneyMatch={setTourneyMatch}
             handleTouples={handleTuples} 
-            tourneyMatch={tourneyMatch}/>}
+            tourneyMatch={tourneyMatch}
+            user={user}
+            handleDeleteMatch={handleDeleteMatch}
+          />}
+            
         />
         <Route 
           path='bracket'

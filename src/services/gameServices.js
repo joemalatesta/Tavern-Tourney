@@ -62,9 +62,8 @@ export function getGameRace (player1, player2){
   }
 }
 
-export function shuffleAndSplitIntoTuples (players) {
+export function shufflePlayers (players){
   addByePlayers(players)
-
   function shuffleArray(array) {
     for (let i = array?.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -73,8 +72,14 @@ export function shuffleAndSplitIntoTuples (players) {
   }
   let myArray = players
   shuffleArray(myArray)
+  return myArray
+}
+
+export function SplitIntoTuples (players) {
+  console.log(players);
+  let myArray = players
+ 
   let playerTuples = []
-  
   
   for(let i = 0; i < myArray.length; i=i+2){
     

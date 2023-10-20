@@ -9,3 +9,13 @@ mark each array based on games?
     round 3 length 8
     round 2 length 16
     round 1 length 32
+
+
+
+    Match = {
+      round1: [{obj of two player},{obj 2 players}, {etc etc etc}],// this is the array sent from the initial 
+      round2: [{obj of two player},{obj 2 players}, {etc etc etc}],
+      round3: [{obj of two player},{obj 2 players}, {etc etc etc}],
+      round4: [{obj of two player},{obj 2 players}, {etc etc etc}],
+      round5: [{obj of two player},{obj 2 players}, {etc etc etc}],
+    }

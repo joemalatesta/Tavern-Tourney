@@ -4,8 +4,8 @@ import SingleMatchPlayerLine from "./SingleMatchPlayerLine";
 
 const SingleMatch = (props) => {
   const [hiddenWinnerButton, setHiddenWinnerButton] = useState(false);
-  
   let sortedPlayers
+  
   if(props?.match?.length === 2 ){
     sortedPlayers = [...props.match].sort((a, b) => b.rank - a.rank);
   }
@@ -39,13 +39,12 @@ const SingleMatch = (props) => {
   }
 
   return (
-    <div className="bracket">
+    <div className="bracket match-width">
       {player?.map(player =>(
         <div key={player._id}>
           <SingleMatchPlayerLine 
             hiddenWinnerButton={hiddenWinnerButton} 
             setHiddenWinnerButton={setHiddenWinnerButton} 
-            setWinnerMatch={props.setWinnerMatch} 
             key={player._id} 
             player={player} />
         </div>

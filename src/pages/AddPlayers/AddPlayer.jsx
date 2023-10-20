@@ -20,6 +20,7 @@ const AddPlayer = (props) => {
   const handleSubmit = evt => {
     evt.preventDefault()
     props.handleAddPlayer(formData)
+		setFormData({name: '', rank: 0})
   }
 
 	return (
@@ -60,7 +61,7 @@ const AddPlayer = (props) => {
 					</button>
 				</div>
 			</form>
-			<AllPlayers  players={props.players} />
+			<AllPlayers  handleDeletePlayer={props.handleDeletePlayer} players={props.players} />
 		</div>
 	)
 }

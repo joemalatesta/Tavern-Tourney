@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-const SingleMatchPlayerLine = ({player, setWinnerMatch, hiddenWinnerButton, setHiddenWinnerButton}) => {
+const SingleMatchPlayerLine = ({player, hiddenWinnerButton, setHiddenWinnerButton}) => {
   const [selectedGames, setSelectedGames] = useState([]);
   const [winner, setWinner] = useState(false)
   const gameCheckboxes = []
@@ -26,17 +26,16 @@ const SingleMatchPlayerLine = ({player, setWinnerMatch, hiddenWinnerButton, setH
     );
   }
 
-  const isWinner = (name) => {
-    console.log(`${name.name} is the winner!`);
+  const isWinner = (player) => {
+    console.log(player);// need to set this player to the next bracket depending on how many people are playing
     setHiddenWinnerButton(true)
-    setWinnerMatch(name)
     setWinner(true)
   }
 
   return ( 
     <div className={`bracket space-between ${winner? 'green-felt': 'red-felt'}` } >
       <div className="start">
-        {player.name} ({player.rank}) {gameCheckboxes} 
+        {player.name} ({player.rank}) {gameCheckboxes} {winner? 'WINNER' : ''}
       </div>
       {hiddenWinnerButton === false && 
         <div className="end">winner<input
