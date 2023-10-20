@@ -1,22 +1,14 @@
-import { useState, useEffect } from 'react';
-import ThreeBracket from './ThreeBracket';
-import { toupleOfTouples } from '../../services/services';
 
-const Bracket = ({touples}) => {
-  
-  const [twoMatch, setTwoMatch] = useState([])
+import SingleMatch from './SingleMatch';
 
-  console.log(touples);
+const Bracket = ({tuples}) => {
 
-  useEffect(() => {
-    setTwoMatch(toupleOfTouples(touples))
-  }, [touples]);
 
   return (
       <>
         <div className='match-bracket green-felt'>
-          {twoMatch?.map((match)=>(
-            <ThreeBracket key={Math?.random()} match={match}/>
+          {tuples?.map((match,idx)=>(
+              <SingleMatch match={match} key={idx}/>
             ))}
         </div>
       </>

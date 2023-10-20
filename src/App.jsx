@@ -20,7 +20,7 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 import * as authService from './services/authService'
 import * as playerService from './services/playerService'
 import * as matchService from './services/matchService'
-import * as services from './services/services'
+import * as services from './services/gameServices'
 // styles
 import './App.css'
 import Bracket from './components/bracket/Bracket'
@@ -52,6 +52,16 @@ function App() {
     fetchMatch()
   }, []);
 
+  useEffect(() => {
+    const handleUpdateMatch = async (matchData) => {
+      console.log();
+      const updatedMatch = await playerService.update(matchData)
+      setTourneyMatch([...tourneyMatch, updatedMatch])
+    }
+    handleUpdateMatch()
+  }, [tourneyMatch]);
+
+
   const handleLogout = () => {
     authService.logout()
     setUser(null)
@@ -72,7 +82,7 @@ function App() {
     setTourneyMatch([...tourneyMatch, newMatch])
   }
 
-  const handleTouples = (players) => {
+  const handleTuples = (players) => {
     
     setSingleMatch(services.shuffleAndSplitIntoTuples(players))
     
@@ -82,6 +92,11 @@ function App() {
     setPlayMatch(!playMatch)
   }
 
+  const handleUpdateMatch = async (matchData) => {
+    console.log();
+    const updatedMatch = await playerService.update(matchData)
+    setTourneyMatch([...tourneyMatch, updatedMatch])
+  }
   
 
   return (
@@ -141,12 +156,12 @@ function App() {
          <Route 
           path="/view-brackets"
           element={<ViewBrackets 
-            handleTouples={handleTouples} 
+            handleTouples={handleTuples} 
             tourneyMatch={tourneyMatch}/>}
         />
         <Route 
           path='bracket'
-          element={<Bracket touples={singleMatch} /> } 
+          element={<Bracket tuples={singleMatch} /> } 
         />
    
       </Routes>

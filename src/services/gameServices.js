@@ -1,5 +1,4 @@
 export function getGameRace (player1, player2){
-  console.log(player1,player2);
   if(player1?.name === 'bye' || player2?.name === 'bye') return 'No game'
   
   let highest = Math.max(player1.rank , player2.rank)
@@ -65,7 +64,7 @@ export function getGameRace (player1, player2){
 
 export function shuffleAndSplitIntoTuples (players) {
   addByePlayers(players)
-  console.log(players);
+
   function shuffleArray(array) {
     for (let i = array?.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -75,13 +74,12 @@ export function shuffleAndSplitIntoTuples (players) {
   let myArray = players
   shuffleArray(myArray)
   let playerTuples = []
-  console.log(myArray);
+  
   
   for(let i = 0; i < myArray.length; i=i+2){
     
     playerTuples.push([myArray[i],myArray[i+1]])
   }
-  console.log(playerTuples);
   return playerTuples
 }
 
@@ -135,6 +133,26 @@ export function addByePlayers (players) {
     num = 64 - players.length
     calcByesNeeded(num)
   }
-  console.log('this is the number of byes added to the match and the player.length', num, players.length);
 }
 
+export function createRoundArrays (players) {
+  // if players === 64 will start with 32 arrays from the tuple function
+  // so need to create a 16,8,4,2,1 array for the remaining games
+  if(players === 4){
+    
+    //set the first array with the tuples which will be index 0
+    //then use this [[first round already built],[],[],[],[],[]]
+
+  }
+
+
+
+  // check players length to determine how many rounds are needed
+  // assign each braacket an index
+  // push winner to the next bracket in line with the position it currently is positioned
+  // for ex if it is an eight player match t1 would be index 0 with a sub array that has a length of 4. 
+      // t2 would be index 1 with an index of 1 and a length of 2 
+      // winners from t1 index 0 and 1 would be pushed to t2 index 0
+      // winners from t1 index 2 and 3 would be pushed to t2 index 1 
+      // winners from t2 indexes 0 and 1 would be pushed to a finals index since they are the last two teams
+}

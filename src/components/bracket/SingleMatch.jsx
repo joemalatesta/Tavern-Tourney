@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import { getGameRace } from '../../services/services';
+import { getGameRace } from '../../services/gameServices';
 import SingleMatchPlayerLine from "./SingleMatchPlayerLine";
 
 const SingleMatch = (props) => {
   const [hiddenWinnerButton, setHiddenWinnerButton] = useState(false);
-  console.log(props);
+  
   let sortedPlayers
   if(props?.match?.length === 2 ){
     sortedPlayers = [...props.match].sort((a, b) => b.rank - a.rank);
@@ -14,18 +14,13 @@ const SingleMatch = (props) => {
     gamesNeededToWin: ''
   })))
   
-  
-  
-  
-  
   useEffect(() => {
     getFirstPlayer(props.match)
   }, [props.match]);
 
   function getFirstPlayer(game) {
     let sortedGame
-    console.log(game);
-    if(game[0].name === 'Bye' || game[1].name === 'Bye')return
+    if(game.name === 'Bye')return
     if(game?.length === 2 ){
       sortedGame = [...game].sort((a, b) => a.rank - b.rank);
       let races = getGameRace(sortedGame[0], sortedGame[1]);
@@ -41,8 +36,6 @@ const SingleMatch = (props) => {
         });
       });
     }
-
-   
   }
 
   return (

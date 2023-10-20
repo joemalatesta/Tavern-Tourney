@@ -8,11 +8,9 @@ const ViewBrackets = (props) => {
   const [tourney, setTourney] = useState()
   
   const handleGetMatch = async (game) => {
-    console.log(game);
     const playerObj = await Promise.all(game.matchPlayers.map(player =>
       playerService.findOne(player)
     ));
-    console.log(playerObj);
     await props.handleTouples(playerObj)
     navigate('/bracket')
   }
