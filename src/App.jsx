@@ -9,21 +9,21 @@ import Landing from './pages/Landing/Landing'
 import Profiles from './pages/Profiles/Profiles'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 import AddPlayer from './pages/AddPlayers/AddPlayer'
-import ViewBrackets from './pages/ViewBrackets/ViewBrackets'
+import ViewTournaments from './pages/ViewTournaments/ViewTournaments'
 import CreateMatch from './pages/AddPlayerToMatch/CreateMatch'
+import BracketLayout from './components/bracket/BracketLayout'
 
 // components
 import NavBar from './components/NavBar/NavBar'
+import Bracket from './components/bracket/Bracket'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 
 // services
 import * as authService from './services/authService'
 import * as playerService from './services/playerService'
 import * as matchService from './services/matchService'
-import * as services from './services/gameServices'
 // styles
 import './App.css'
-import Bracket from './components/bracket/Bracket'
 
 
 
@@ -92,10 +92,6 @@ function App() {
     setTourneyMatch(tourneyMatch.filter(match=> match._id !== deletedMatch._id))
   }
   
-  const handleTuples = (players) => {
-    setSingleMatch(services.SplitIntoTuples(players))
-  }
-
   const isDisabled = () => {
     setPlayMatch(!playMatch)
   }
@@ -167,22 +163,28 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/bracket-layout"
+          element={
+            
+              <BracketLayout singleMatch={singleMatch} />
+           
+          }
+        />
          <Route 
-          path="/view-brackets"
-          element={<ViewBrackets 
-            setTourneyMatch={setTourneyMatch}
-            handleTouples={handleTuples} 
+          path="/view-tournaments"
+          element={<ViewTournaments
             tourneyMatch={tourneyMatch}
+            setTourneyMatch={setTourneyMatch}
             user={user}
             handleDeleteMatch={handleDeleteMatch}
+            setSingleMatch={setSingleMatch}
           />}
-            
         />
         <Route 
           path='bracket'
-          element={<Bracket tuples={singleMatch} /> } 
+          element={<Bracket playerObj={singleMatch} /> } 
         />
-   
       </Routes>
     </>
   )

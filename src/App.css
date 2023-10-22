@@ -100,8 +100,29 @@ a:visited {
 .match-width {
   width: 480px;
 }
+.match-width2 {
+  width: 300px;
+}
 .bold {
   font-weight: 900;
+}
+
+.match-height {
+  height: 200px;
+}
+.match-height2 {
+  height:auto;
+}
+
+.bracket-layout__main {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.bracket-layout__round {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 /* ***************************************************************************************************** */
 

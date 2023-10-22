@@ -1,19 +1,19 @@
-
-import SingleMatch from './SingleMatch';
-
-const Bracket = ({tuples}) => {
-
-
+import * as gameService from '../../services/gameServices'
+import SingleMatch from './SingleMatch'
+const Bracket = ({playerObj}) => {
+  console.log(playerObj);
+  let match = gameService.SplitIntoTuples(playerObj)
+  console.log(match);
   return (
-      <>
-        <div className='match-bracket green-felt'>
-          {tuples?.map((match,idx)=>(
-              <SingleMatch match={match} key={idx}/>
-            ))}
-        </div>
-      </>
-    );
-  };
+    <>
+      {match.map((soloMatch, idx) => (
+        <SingleMatch key={idx} match={soloMatch} />
+      ))
+
+      }
+    </>
+  )
+};
   
   export default Bracket;
 

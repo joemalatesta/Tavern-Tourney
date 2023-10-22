@@ -13,7 +13,7 @@ const NavBar = ({ user, handleLogout }) => {
             <NavLink to="/add-players-to-match">Add players to match</NavLink>
           </>
           }
-          <NavLink to='/view-brackets'>View Brackets</NavLink>
+          <NavLink to='/view-tournaments'>View Tournaments</NavLink>
           <NavLink></NavLink>
           <NavLink></NavLink>
           <NavLink to="/auth/change-password">Change Password</NavLink>
@@ -22,7 +22,7 @@ const NavBar = ({ user, handleLogout }) => {
       :
         <div className='nav-bar'>
           <NavLink to='/'>Home</NavLink>
-          <NavLink to='/view-brackets'>View Brackets</NavLink>
+          <NavLink to='/view-tournaments'>View Tournaments</NavLink>
           <NavLink></NavLink>
           <NavLink to="/auth/login">Log In</NavLink>
           <NavLink to="/auth/signup">Sign Up</NavLink>

@@ -1,3 +1,4 @@
+
 export function getGameRace (player1, player2){
   if(player1?.name === 'bye' || player2?.name === 'bye') return 'No game'
   
@@ -63,35 +64,28 @@ export function getGameRace (player1, player2){
 }
 
 export function shufflePlayers (players){
-  addByePlayers(players)
   function shuffleArray(array) {
     for (let i = array?.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];
     }
   }
-  let myArray = players
-  shuffleArray(myArray)
-  return myArray
+ 
+  shuffleArray(players)
+  return players
 }
 
 export function SplitIntoTuples (players) {
-  console.log(players);
-  let myArray = players
+  console.log(players?.length);
+  
  
   let playerTuples = []
   
-  for(let i = 0; i < myArray.length; i=i+2){
+  for(let i = 0; i < players?.length; i=i+2){
     
-    playerTuples.push([myArray[i],myArray[i+1]])
+    playerTuples.push([players[i],players[i+1]])
   }
   return playerTuples
-}
-
-export function toupleOfTouples (playerTouples) {
-  let fourTeamTouple = shuffleAndSplitIntoTuples(playerTouples)
-
-  return fourTeamTouple
 }
 
 export function getFirstPlayer  (game) {
@@ -140,24 +134,3 @@ export function addByePlayers (players) {
   }
 }
 
-export function createRoundArrays (players) {
-  // if players === 64 will start with 32 arrays from the tuple function
-  // so need to create a 16,8,4,2,1 array for the remaining games
-  if(players === 4){
-    
-    //set the first array with the tuples which will be index 0
-    //then use this [[first round already built],[],[],[],[],[]]
-
-  }
-
-
-
-  // check players length to determine how many rounds are needed
-  // assign each braacket an index
-  // push winner to the next bracket in line with the position it currently is positioned
-  // for ex if it is an eight player match t1 would be index 0 with a sub array that has a length of 4. 
-      // t2 would be index 1 with an index of 1 and a length of 2 
-      // winners from t1 index 0 and 1 would be pushed to t2 index 0
-      // winners from t1 index 2 and 3 would be pushed to t2 index 1 
-      // winners from t2 indexes 0 and 1 would be pushed to a finals index since they are the last two teams
-}

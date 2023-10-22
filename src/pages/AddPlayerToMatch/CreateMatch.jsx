@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react"
 import ListOfPlayers from "./ListOfPlayers"
 import * as playerService from '../../services/playerService'
+import * as gameService from '../../services/gameServices'
 import { useNavigate } from "react-router-dom"
 
 const CreateMatch = (props) => {
@@ -39,10 +40,11 @@ const CreateMatch = (props) => {
 
   const handleSubmit = async evt => {
     evt.preventDefault()
+    setMatch(gameService.shufflePlayers(match))
     const updatedFormData = { ...formData, matchPlayers: match };
     await props.handleAddMatch(updatedFormData)
     console.log('this is the formdata at submit', updatedFormData);
-    navigate('/view-brackets')
+    navigate('/view-tournaments')
   }
   console.log('I am showing an array of object players here',match);//I am showing an array of object players here
   return (

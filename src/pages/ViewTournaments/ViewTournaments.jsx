@@ -1,17 +1,20 @@
 import { useNavigate } from "react-router-dom"
 import * as playerService from '../../services/playerService'
 import * as matchService from '../../services/matchService'
+import * as gameService from '../../services/gameServices'
 import { useEffect, useState } from "react";
 
-const ViewBrackets = ({user, handleTouples, setTourneyMatch, tourneyMatch}) => {
+const ViewTournaments = ({user, setTourneyMatch, tourneyMatch, setSingleMatch}) => {
   const navigate = useNavigate()
   const [tourney, setTourney] = useState()
   
   const handleGetMatch = async (game) => {
-    const playerObj = await Promise.all(game.matchPlayers.map(player =>
+    let playerObj = await Promise.all(game.matchPlayers.map(player =>
       playerService.findOne(player)
     ));
-    await handleTouples(playerObj)
+    await gameService.SplitIntoTuples(playerObj)
+    setSingleMatch(playerObj)
+    playerObj = gameService.addByePlayers(playerObj)
     navigate('/bracket')
   }
  
@@ -31,24 +34,20 @@ const ViewBrackets = ({user, handleTouples, setTourneyMatch, tourneyMatch}) => {
   console.log(tourney);
   
   return (
-    <>
-      <div className="match-bracket green-felt">
+    <div className="bracket width  center">
+      <div className="match-bracket width green-felt">
         {tourney?.map(game => (
           <div key={game._id}>
             <button onClick={()=>handleGetMatch(game)}>{ game.name } : {game.gameType}</button>
             {user?.name==="Admin" &&
               <button onClick={()=>handleDeleteMatch(game._id)}>delete match</button>
             }
-            
-            
-            
-            
           </div>
           )
         )}  
       </div>
-    </>
+    </div>
   )
 }
  
-export default ViewBrackets
+export default ViewTournaments
