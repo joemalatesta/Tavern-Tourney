@@ -15,7 +15,7 @@ const ViewTournaments = ({user, setTourneyMatch, tourneyMatch, setSingleMatch}) 
     await gameService.SplitIntoTuples(playerObj)
     setSingleMatch(playerObj)
     playerObj = gameService.addByePlayers(playerObj)
-    navigate('/bracket')
+    navigate('/bracket-layout')
   }
  
   useEffect(() => {

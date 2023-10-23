@@ -38,10 +38,12 @@ const SingleMatch = (props) => {
     }
   }
 
+
+
   return (
-    <div className="bracket match-width">
-      {player?.map(player =>(
-        <div key={player._id}>
+    <div className="bracket-layout__round bracket match-width  match-height">
+      {player?.map((player, idx) =>(
+        <div key={idx}>
           <SingleMatchPlayerLine 
             hiddenWinnerButton={hiddenWinnerButton} 
             setHiddenWinnerButton={setHiddenWinnerButton} 

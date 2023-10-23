@@ -34,11 +34,11 @@ const SingleMatchPlayerLine = ({player, hiddenWinnerButton, setHiddenWinnerButto
 
   return ( 
     <div className={`bracket space-between ${winner? 'green-felt': 'red-felt'}` } >
-      <div className="start">
+      <div className="flex bracket match-width2  match-height2" id='match-5'>
         {player.name} ({player.rank}) {gameCheckboxes} {winner? 'WINNER' : ''}
       </div>
       {hiddenWinnerButton === false && 
-        <div className="end">winner<input
+        <div className="">winner<input
         type="checkbox"
         onChange={()=>isWinner(player)}
         /></div> 

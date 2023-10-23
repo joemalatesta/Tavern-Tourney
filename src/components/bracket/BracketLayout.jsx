@@ -1,40 +1,43 @@
-const BracketLayout = ({singleMatch}) => {
+import Bracket from "./Bracket";
+
+const BracketLayout = ({playerObj}) => {
   
-  console.log(singleMatch);
-
-    
+  console.log(playerObj.length);
+  let round2
+  let round3
   
-
-  
-  
-  
-
-
-
-
-
-
-  
-  return ( 
-    <div className="bracket">
-      <div className="bracket-layout__main ">
-        <div id='round1' className="bracket-layout__round bracket match-width  match-height">
-          <div className="flex bracket match-width2  match-height2"id='match-1'></div>
-          <div className="flex bracket match-width2  match-height2"id='match-2'></div>
-          <div className="flex bracket match-width2  match-height2"id='match-3'></div>
-          <div className="flex bracket match-width2  match-height2"id='match-4'></div>
-        </div>
-        <div className="bracket-layout__round bracket match-width  match-height"id='round2'>
-          <div className="flex bracket match-width2  match-height2"id='match-5'></div>
-          <div className="flex bracket match-width2  match-height2"id='match-6'></div>
-        </div>
-        <div className="bracket-layout__round bracket match-width  match-height"id='finalRound'>
-          <div className="flex bracket match-width2  match-height2"id='final'></div>
+  if(playerObj.length === 8) return ( 
+      <div className="bracket auto-width">
+        <div className="bracket-layout__main green-felt extend">
+          <div className="">
+            <div className="flex-column"id='match-1'>
+              <Bracket playerObj={playerObj}/>
+            </div>
+          </div>
+          <div className="flex-column" id='round2'>
+            <div>
+              {round2 ?
+                <Bracket round2={round2}/>
+              :
+                <h1>no round yet</h1>
+              }
+            </div>
+          </div>
+          <div className="flex-column"id='finalRound'>
+            <div>
+              {round3 ?
+                <Bracket round3={round3}/>
+                :
+                <h1>No round yet</h1>
+              }
+            </div>
+          </div>
         </div>
       </div>
-    
-    </div>
   )
+
+
+  
 }
  
 export default BracketLayout;

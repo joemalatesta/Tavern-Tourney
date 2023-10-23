@@ -167,7 +167,7 @@ function App() {
           path="/bracket-layout"
           element={
             
-              <BracketLayout singleMatch={singleMatch} />
+              <BracketLayout playerObj={singleMatch} />
            
           }
         />
@@ -181,10 +181,7 @@ function App() {
             setSingleMatch={setSingleMatch}
           />}
         />
-        <Route 
-          path='bracket'
-          element={<Bracket playerObj={singleMatch} /> } 
-        />
+  
       </Routes>
     </>
   )
