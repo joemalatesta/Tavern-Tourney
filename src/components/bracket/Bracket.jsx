@@ -1,13 +1,17 @@
 import * as gameService from '../../services/gameServices'
 import SingleMatch from './SingleMatch'
-const Bracket = ({playerObj}) => {
+const Bracket = ({playerObj, setRound}) => {
   console.log(playerObj);
   let match = gameService.SplitIntoTuples(playerObj)
   console.log(match);
   return (
     <>
       {match.map((soloMatch, idx) => (
-        <SingleMatch key={idx} match={soloMatch} />
+        <SingleMatch 
+          key={idx} 
+          match={soloMatch} 
+          setRound={setRound}  
+        />
       ))
 
       }

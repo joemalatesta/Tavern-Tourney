@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-const SingleMatchPlayerLine = ({player, hiddenWinnerButton, setHiddenWinnerButton}) => {
+const SingleMatchPlayerLine = ({player, hiddenWinnerButton, setHiddenWinnerButton, setRound}) => {
   const [selectedGames, setSelectedGames] = useState([]);
   const [winner, setWinner] = useState(false)
   const gameCheckboxes = []
@@ -28,6 +28,7 @@ const SingleMatchPlayerLine = ({player, hiddenWinnerButton, setHiddenWinnerButto
 
   const isWinner = (player) => {
     console.log(player);// need to set this player to the next bracket depending on how many people are playing
+    setRound((prevplayers)=> [player, ...prevplayers])
     setHiddenWinnerButton(true)
     setWinner(true)
   }
