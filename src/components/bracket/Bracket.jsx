@@ -1,7 +1,9 @@
 import * as gameService from '../../services/gameServices'
 import SingleMatch from './SingleMatch'
-const Bracket = ({playerObj, setRound}) => {
+const Bracket = ({playerObj, setRound, customSort}) => {
   console.log(playerObj);
+  playerObj.sort(customSort)
+
   let match = gameService.SplitIntoTuples(playerObj)
   console.log(match);
   return (

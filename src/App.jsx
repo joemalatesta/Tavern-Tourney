@@ -15,7 +15,6 @@ import BracketLayout from './components/bracket/BracketLayout'
 
 // components
 import NavBar from './components/NavBar/NavBar'
-import Bracket from './components/bracket/Bracket'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 
 // services
@@ -96,11 +95,11 @@ function App() {
     setPlayMatch(!playMatch)
   }
 
-  const handleUpdateMatch = async (matchData) => {
-    console.log();
-    const updatedMatch = await playerService.update(matchData)
-    setTourneyMatch([...tourneyMatch, updatedMatch])
-  }
+  // const handleUpdateMatch = async (matchData) => {
+  //   console.log();
+  //   const updatedMatch = await playerService.update(matchData)
+  //   setTourneyMatch([...tourneyMatch, updatedMatch])
+  // }
   
 
   return (
