@@ -1,25 +1,28 @@
 import * as gameService from '../../services/gameServices'
 import SingleMatch from './SingleMatch'
-const Bracket = ({playerObj, setRound, customSort}) => {
-  console.log(playerObj);
-  playerObj.sort(customSort)
-
+const Bracket = ({playerObj, setRound}) => {
+  
   let match = gameService.SplitIntoTuples(playerObj)
-  console.log(match);
+  console.log(playerObj);
   return (
     <>
+ 
       {match.map((soloMatch, idx) => (
+        soloMatch[0] === null && soloMatch[1] === null 
+        ?
+          <div key={idx} >no games yet</div>
+        :  
         <SingleMatch 
           key={idx} 
           match={soloMatch} 
           setRound={setRound}  
         />
-      ))
-
-      }
+        ))
+}
+    
     </>
   )
-};
+}
   
   export default Bracket;
 

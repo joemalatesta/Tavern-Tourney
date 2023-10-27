@@ -35,6 +35,7 @@ const SingleMatchPlayerLine = ({player, hiddenWinnerButton, setHiddenWinnerButto
 
   return ( 
     <div className={`bracket space-between ${winner? 'green-felt': 'red-felt'}` } >
+      
       <div className="flex bracket match-width2  match-height2" id='match-5'>
         {player.name} ({player.rank}) {gameCheckboxes} {winner? 'WINNER' : ''}
       </div>
