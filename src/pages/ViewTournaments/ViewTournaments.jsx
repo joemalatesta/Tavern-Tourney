@@ -31,7 +31,6 @@ const ViewTournaments = ({user, setTourneyMatch, tourneyMatch, setSingleMatch}) 
     setTourneyMatch(tourneyMatch.filter(match=> match._id !== deletedMatch._id))
   }
 
-  console.log(tourney);
   
   return (
     <div className="bracket width  center">

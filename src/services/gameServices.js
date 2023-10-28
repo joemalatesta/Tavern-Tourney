@@ -76,7 +76,6 @@ export function shufflePlayers (players){
 }
 
 export function SplitIntoTuples (players) {
-  console.log(players?.length);
   
  
   let playerTuples = []
