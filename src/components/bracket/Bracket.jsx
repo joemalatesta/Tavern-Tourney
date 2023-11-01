@@ -2,45 +2,57 @@ import { useState } from "react";
 import SingleMatch from './SingleMatch'
 
 const Bracket = ({ playerObj }) => {
-  const [round, setRound] = useState([[null,null],[null,null]])
+  const [round, setRound] = useState([[null, null], [null, null]]);
 
-  const handleRoundPlayers = async (player) => {
-    console.log(player);
-    console.log('round', round);
-    let playerIdx = await getIndex(player)
-    console.log(playerIdx);
-    if (playerIdx === 0 || playerIdx === 1 || playerIdx === 2 || playerIdx === 3){
-      if(round[0].includes(null)) {
-        setRound([...round, [round[0].shift()]])
+  const handleRoundPlayers = (player) => {
+    const playerIdx = getIndex(player);
+
+    if (playerIdx === 0 || playerIdx === 1 || playerIdx === 2 || playerIdx === 3) {
+      if (round[0].includes(null)) {
+        const updatedRound = [...round];
+        const nullIndex = updatedRound[0].indexOf(null);
+        updatedRound[0][nullIndex] = player;
+        setRound(updatedRound);
+      } else {
+        if (round[1].includes(null)) {
+          const updatedRound = [...round];
+          const nullIndex = updatedRound[1].indexOf(null);
+          updatedRound[1][nullIndex] = player;
+          setRound(updatedRound);
+        } else {
+          console.log("Both rounds are complete, cannot add more players.");
+        }
       }
-      setRound([...round, [round[0].push(player)]])
-      console.log('yes');
+    } else {
+      console.log("Player index is out of range.");
     }
-    // if (playerIdx === 4 || playerIdx === 5 || playerIdx === 6 || playerIdx === 7) {
-    //   setRound([...round, [round[1].push(player)]])
-    // }
-    
-    console.log('No')
     console.log(round);
+  };
 
-  }
   const getIndex = (player) => {
-    console.log(playerObj.indexOf(player))
-    return playerObj.indexOf(player)
-  }
+    return playerObj.indexOf(player);
+  };
 
   return (
     <>
-      {playerObj.map(player=> (
-        <SingleMatch 
-          getIndex={getIndex} 
-          player={player} 
+      {playerObj.map((player) => (
+        <SingleMatch
+          getIndex={getIndex}
+          player={player}
           key={player._id}
-          handleRoundPlayers={handleRoundPlayers}  
+          handleRoundPlayers={handleRoundPlayers}
         />
       ))}
+      {/* Display rounds */}
+      {round.map((match, index) => (
+        <div key={index}>
+          {match.map((player, idx) => (
+            <div key={idx}>{player ? player.name : "Waiting..."}</div>
+          ))}
+        </div>
+      ))}
     </>
-  )
-}
+  );
+};
 
 export default Bracket;
