@@ -107,27 +107,27 @@ export function addByePlayers (players) {
   }
   
   if(players.length > 2 && players.length <= 4 ){
-    console.log('hit 2-4');
+
     num = 4 - players.length
     calcByesNeeded(num)
   }
   if(players.length > 4 && players.length < 8 ){
-    console.log('hit 4-8');
+   
     num = (8 - players.length)
     calcByesNeeded(num)
   }
   if(players.length > 8 && players.length <= 16 ){
-    console.log('hit 8-16');
+    
     num = 16 - players.length
     calcByesNeeded(num)
   }
   if(players.length > 16 && players.length < 32 ){
-    console.log('hit 16-32');
+   
     num = 32 - players.length
     calcByesNeeded(num)
   }
   if(players.length > 32 && players.length < 64 ){
-    console.log('hit 32-64');
+    
     num = 64 - players.length
     calcByesNeeded(num)
   }
