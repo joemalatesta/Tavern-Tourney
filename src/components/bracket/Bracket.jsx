@@ -1,14 +1,16 @@
 import { useState } from "react";
 import SingleMatch from './SingleMatch'
+import * as gameService from '../../services/gameServices'
 
 const Bracket = ({ playerObj }) => {
   const [round, setRound] = useState([[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null]])
-      
-  
+  const [matches, setMatches] = useState(gameService.SplitIntoTuples(playerObj))
+  console.log(matches);
   const handleRoundPlayers = (player) => {
     const playerIdx = getIndex(player);
 
     if (playerIdx === 0 || playerIdx === 1 || playerIdx === 2 || playerIdx === 3) {
+ 
       if (round[0].includes(null)) {
         const updatedRound = [...round];
         const nullIndex = updatedRound[0].indexOf(null);
@@ -81,24 +83,24 @@ const Bracket = ({ playerObj }) => {
 
   return (
     <>
-      {playerObj.map((player) => (
+      {matches?.map((match, idx) => (
         <SingleMatch
-          getIndex={getIndex}
-          player={player}
-          key={player._id}
+          match={match}
+          playerObj={playerObj}
+          key={idx}
           handleRoundPlayers={handleRoundPlayers}
         />
       ))}
-      {/* Display rounds */}
-      {round?.map((match, index) => (
-        <div key={index}>
-          {match.map((player, idx) => (
-            <div key={idx}>{ player ? player.name : null }</div>
-          ))}
-        </div>
-      ))}
+
     </>
   );
 };
 
 export default Bracket;
+// {round?.map((match, index) => (
+//   <div key={index}>
+//     {match.map((player, idx) => (
+//       <div key={idx}>{ player ? player.name : null }</div>
+//     ))}
+//   </div>
+// ))}
