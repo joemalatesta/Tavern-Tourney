@@ -97,10 +97,3 @@ const Bracket = ({ playerObj }) => {
 };
 
 export default Bracket;
-// {round?.map((match, index) => (
-//   <div key={index}>
-//     {match.map((player, idx) => (
-//       <div key={idx}>{ player ? player.name : null }</div>
-//     ))}
-//   </div>
-// ))}
