@@ -1,9 +1,9 @@
-
+import { useState } from 'react'
 import * as gameService from '../../services/gameServices'
 import SingleMatchPlayerLine from './SingleMatchPlayerLine'
 
 const SingleMatch = (props) => {
-  // const [isHidden, setIsHidden] = useState(false)
+  const [isHidden, setIsHidden] = useState(false)
 
   const playerMatches = gameService.getFirstPlayer(props.match)
   let gamesNeededToWin = gameService.getGameRace(props?.match[0], props?.match[1])
@@ -14,19 +14,20 @@ const SingleMatch = (props) => {
   // then send the winner to the bracket level
   // Should have winner here.
   // need to have the winner function passed to here
-  const handleClick = () => {
-    // setIsHidden(true)
+  const handleHideWinnerCheckbox = () => {
+    setIsHidden(true)
     props.handleRoundPlayers(props.player)
   }
-
+  console.log(isHidden);
   return (
     <>
       <div className="bracket">
         {match?.map(player=> 
           <SingleMatchPlayerLine
+            isHidden={isHidden}
             user={props.user}
             player={player}
-            handleClick={handleClick}
+            handleHideWinnerCheckbox={handleHideWinnerCheckbox}
             key={player._id}
           />
         )}

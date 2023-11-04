@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-const SingleMatchPlayerLine = ({ player, user }) => {
+const SingleMatchPlayerLine = ({ player, user, isHidden, handleHideWinnerCheckbox }) => {
   const [checkboxes, setCheckboxes] = useState([])
 
   useEffect(() => {
@@ -27,9 +27,9 @@ const SingleMatchPlayerLine = ({ player, user }) => {
       </div>
       <div className="end center">
         {user?.name === 'Admin' && 
-        <>
-          Winner <input type="checkbox" />
-        </>
+        <div hidden={isHidden}>
+          Winner <input hidden={isHidden} onChange={()=>handleHideWinnerCheckbox()} type="checkbox" />
+        </div>
         
         }
         
