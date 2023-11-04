@@ -1,11 +1,6 @@
-
 import Bracket from "./Bracket"
 
-
 const BracketLayout = ({playerObj}) => { 
- 
-
-
 
   return ( 
     <div className="auto-width">
