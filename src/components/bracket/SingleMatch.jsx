@@ -24,6 +24,7 @@ const SingleMatch = (props) => {
       <div className="bracket">
         {match?.map(player=> 
           <SingleMatchPlayerLine
+            user={props.user}
             player={player}
             handleClick={handleClick}
             key={player._id}

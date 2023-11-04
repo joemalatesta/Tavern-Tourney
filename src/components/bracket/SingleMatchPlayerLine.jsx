@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-const SingleMatchPlayerLine = ({ player }) => {
+const SingleMatchPlayerLine = ({ player, user }) => {
   const [checkboxes, setCheckboxes] = useState([])
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const SingleMatchPlayerLine = ({ player }) => {
 
     getCheckboxes()
   }, [player])
-
+  console.log(user);
   return (
     <div className="flex">
       <div className="flex start bracket match-width2 match-height2 red-felt">
@@ -26,7 +26,13 @@ const SingleMatchPlayerLine = ({ player }) => {
         {checkboxes}
       </div>
       <div className="end center">
-        Winner <input type="checkbox" />
+        {user?.name === 'Admin' && 
+        <>
+          Winner <input type="checkbox" />
+        </>
+        
+        }
+        
       </div>
     </div>
   )

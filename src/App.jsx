@@ -51,16 +51,6 @@ function App() {
     fetchMatch()
   }, []);
 
-  // useEffect(() => {
-  //   const handleUpdateMatch = async (matchData) => {
-  //     console.log();
-  //     const updatedMatch = await matchService.update(matchData)
-  //     setTourneyMatch([...tourneyMatch, updatedMatch])
-  //   }
-  //   handleUpdateMatch()
-  // }, [tourneyMatch]);
-
-
   const handleLogout = () => {
     authService.logout()
     setUser(null)
@@ -144,7 +134,6 @@ function App() {
           element={    
             <ProtectedRoute user={user}>
               <CreateMatch
-
                 playMatch={playMatch}   
                 isDisabled={isDisabled} 
                 handleAddMatch={handleAddMatch} 
@@ -166,7 +155,10 @@ function App() {
           path="/bracket-layout"
           element={
             
-              <BracketLayout playerObj={singleMatch} />
+              <BracketLayout 
+                playerObj={singleMatch} 
+                user={user}
+              />
            
           }
         />

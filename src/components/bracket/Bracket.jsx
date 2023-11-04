@@ -2,7 +2,7 @@ import { useState } from "react";
 import SingleMatch from './SingleMatch'
 import * as gameService from '../../services/gameServices'
 
-const Bracket = ({ playerObj }) => {
+const Bracket = ({ playerObj, user }) => {
   const [round, setRound] = useState([[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null]])
   const [matches, setMatches] = useState(gameService.SplitIntoTuples(playerObj))
 
@@ -86,6 +86,7 @@ const Bracket = ({ playerObj }) => {
     <>
       {matches?.map((match, idx) => (
         <SingleMatch
+          user={user}
           match={match}
           playerObj={playerObj}
           key={idx}

@@ -1,6 +1,6 @@
 import Bracket from "./Bracket"
 
-const BracketLayout = ({playerObj}) => { 
+const BracketLayout = ({playerObj, user}) => { 
 
   return ( 
     <div className="auto-width">
@@ -8,7 +8,9 @@ const BracketLayout = ({playerObj}) => {
         <div className="">
           <div className="flex-column"id='match-1'>
             <Bracket 
-              playerObj={playerObj}/>
+              playerObj={playerObj}
+              user={user}
+            />
           </div>
         </div>
       </div>
