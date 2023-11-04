@@ -5,6 +5,7 @@ import * as gameService from '../../services/gameServices'
 const Bracket = ({ playerObj }) => {
   const [round, setRound] = useState([[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null]])
   const [matches, setMatches] = useState(gameService.SplitIntoTuples(playerObj))
+  
   console.log(matches);
   const handleRoundPlayers = (player) => {
     const playerIdx = getIndex(player);
@@ -79,7 +80,9 @@ const Bracket = ({ playerObj }) => {
 
   const getIndex = (player) => {
     return playerObj.indexOf(player);
-  };
+  }
+
+
 
   return (
     <>

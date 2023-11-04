@@ -88,10 +88,11 @@ export function SplitIntoTuples (players) {
 }
 
 export function getFirstPlayer  (game) {
+  console.log(game);
   function compareByValue(a, b) {
-    return a.rank - b.rank;
+    return b.rank - a.rank;
   }
-  game.sort(compareByValue)
+  return game.sort(compareByValue)
 }
 
 export function addByePlayers (players) {
