@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-const SingleMatchPlayerLine = ({ player, user, isHidden, handleHideWinnerCheckbox }) => {
+const SingleMatchPlayerLine = ({ player, user, isHidden, handleHideWinnerCheckbox, handleAddWinnerToNextRound }) => {
   const [checkboxes, setCheckboxes] = useState([])
 
   useEffect(() => {
@@ -15,10 +15,9 @@ const SingleMatchPlayerLine = ({ player, user, isHidden, handleHideWinnerCheckbo
       }
       setCheckboxes(checkboxesArray)
     }
-
     getCheckboxes()
   }, [player])
-  console.log(user);
+
   return (
     <div className="flex">
       <div className="flex start bracket match-width2 match-height2 red-felt">
@@ -28,7 +27,11 @@ const SingleMatchPlayerLine = ({ player, user, isHidden, handleHideWinnerCheckbo
       <div className="end center">
         {user?.name === 'Admin' && 
         <div hidden={isHidden}>
-          Winner <input hidden={isHidden} onChange={()=>handleHideWinnerCheckbox()} type="checkbox" />
+          Winner <input hidden={isHidden} 
+          onChange={()=>{
+            handleHideWinnerCheckbox()
+            handleAddWinnerToNextRound(player)}} 
+            type="checkbox" />
         </div>
         
         }

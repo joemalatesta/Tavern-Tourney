@@ -16,9 +16,12 @@ const SingleMatch = (props) => {
   // need to have the winner function passed to here
   const handleHideWinnerCheckbox = () => {
     setIsHidden(true)
-    props.handleRoundPlayers(props.player)
   }
-  console.log(isHidden);
+  
+  const handleAddWinnerToNextRound = (player) => {
+    props.handleRoundPlayers(player)
+  }
+  
   return (
     <>
       <div className="bracket">
@@ -27,6 +30,7 @@ const SingleMatch = (props) => {
             isHidden={isHidden}
             user={props.user}
             player={player}
+            handleAddWinnerToNextRound={handleAddWinnerToNextRound}
             handleHideWinnerCheckbox={handleHideWinnerCheckbox}
             key={player._id}
           />

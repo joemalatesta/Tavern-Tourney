@@ -3,12 +3,19 @@ import SingleMatch from './SingleMatch'
 import * as gameService from '../../services/gameServices'
 
 const Bracket = ({ playerObj, user }) => {
+  const getIndex = (searchedPlayer) => {
+    console.log(playerObj.findIndex((player) => searchedPlayer._id === player._id ));
+    return playerObj.findIndex((player) => searchedPlayer._id === player._id )
+  }
+
   const [round, setRound] = useState([[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null]])
   const [matches, setMatches] = useState(gameService.SplitIntoTuples(playerObj))
-
+  
   const handleRoundPlayers = (player) => {
     const playerIdx = getIndex(player);
-
+    console.log('here is the player',player, 'here is the player index', playerIdx);
+    console.log(round);
+    console.log(playerIdx);
     if (playerIdx === 0 || playerIdx === 1 || playerIdx === 2 || playerIdx === 3) {
  
       if (round[0].includes(null)) {
@@ -76,11 +83,7 @@ const Bracket = ({ playerObj, user }) => {
     }
   }
 
-  const getIndex = (player) => {
-    return playerObj.indexOf(player);
-  }
-
-
+ 
 
   return (
     <>
