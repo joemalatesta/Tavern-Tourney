@@ -4,38 +4,33 @@ import * as gameService from '../../services/gameServices';
 
 const Bracket = ({ playerObj, user, matches, round, setRound}) => {
   const getIndex = (searchedPlayer) => {
-    return playerObj.findIndex((player) => searchedPlayer._id === player._id);
+    return playerObj.findIndex((player) => searchedPlayer._id === player._id)
   };
 
-
-
-  const [roundFlattened, setRoundFlattened] = useState(round.flat());
+  const [roundFlattened, setRoundFlattened] = useState(round.flat())
 
   useEffect(() => {
     setRoundFlattened(round.flat())
-    let round2Games = gameService.SplitIntoTuples(round)
-    console.log(round2Games);
-  }, [round]);
+    gameService.SplitIntoTuples(round)
+  }, [round])
 
   
   const handleRoundPlayers = (player) => {
-    const playerIdx = getIndex(player);
-    const updatedRound = [...round];
+    const playerIdx = getIndex(player)
+    const updatedRound = [...round]
 
     if (playerIdx >= 0) {
-      const roundIndex = Math.floor(playerIdx / 4);
-      const subRound = updatedRound[roundIndex];
+      const roundIndex = Math.floor(playerIdx / 4)
+      const subRound = updatedRound[roundIndex]
 
       if (subRound.includes(null)) {
         const nullIndex = subRound.indexOf(null);
-        subRound[nullIndex] = player;
+        subRound[nullIndex] = player
         updatedRound[roundIndex] = subRound;
-        setRound(updatedRound);
+        setRound(updatedRound)
       }
     }
-  };
-
-  console.log(roundFlattened);
+  }
 
   return (
     <>
@@ -49,7 +44,7 @@ const Bracket = ({ playerObj, user, matches, round, setRound}) => {
         />
       ))}
     </>
-  );
-};
+  )
+}
 
-export default Bracket;
+export default Bracket

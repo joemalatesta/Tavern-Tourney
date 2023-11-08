@@ -21,8 +21,13 @@ const SingleMatchPlayerLine = ({ player, user, isHidden, handleHideWinnerCheckbo
   return (
     <div className="flex">
       <div className="flex start bracket match-width2 match-height2 red-felt">
-        {player.name} ({player.rank})
-        {checkboxes}
+        {player !== null &&
+        <>
+          {player.name}
+           ({player.rank})
+           {checkboxes}
+        </>
+        }
       </div>
       <div className="end center">
         {user?.name === 'Admin' && 

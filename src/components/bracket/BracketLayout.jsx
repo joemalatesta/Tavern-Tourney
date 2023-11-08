@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Bracket from "./Bracket"
 import * as gameService from '../../services/gameServices'
 
@@ -11,16 +11,12 @@ const BracketLayout = ({playerObj, user}) => {
     [null, null],[null, null],[null, null],[null, null]
   ])
 
-  // useEffect(() => {
-    
-  // }, [round1]);
-
   const [round1, setRound1] = useState([
     [null, null],[null, null],[null, null],[null, null],
     [null, null],[null, null],[null, null],[null, null]
   ]);
 
-  console.log(round1);
+ 
   return ( 
     <div className="auto-width">
       <div className="bracket-layout__main green-felt2 extend">

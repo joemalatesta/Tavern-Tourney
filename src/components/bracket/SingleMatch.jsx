@@ -5,9 +5,8 @@ import SingleMatchPlayerLine from './SingleMatchPlayerLine'
 const SingleMatch = (props) => {
   const [isHidden, setIsHidden] = useState(false)
   let match
-  const playerMatches = gameService.getFirstPlayer(props.match)
+  gameService.getFirstPlayer(props.match)
   let gamesNeededToWin = gameService.getGameRace(props?.match[0], props?.match[1])
-  console.log(props.match);
   if(props.match[0] !== null && props.match[1] !== null ) {
     match = [{...props?.match[0], gamesNeeded: gamesNeededToWin[0]}, {...props?.match[1], gamesNeeded: gamesNeededToWin[1]}]
   }
@@ -30,15 +29,17 @@ const SingleMatch = (props) => {
   return (
     <>
       <div className="bracket">
-        {match?.map(player=> 
-          <SingleMatchPlayerLine
-            isHidden={isHidden}
-            user={props.user}
-            player={player}
-            handleAddWinnerToNextRound={handleAddWinnerToNextRound}
-            handleHideWinnerCheckbox={handleHideWinnerCheckbox}
-            key={player._id}
-          />
+        {match?.map((player)=>
+          (player !== null &&
+            <SingleMatchPlayerLine
+              isHidden={isHidden}
+              user={props.user}
+              player={player}
+              handleAddWinnerToNextRound={handleAddWinnerToNextRound}
+              handleHideWinnerCheckbox={handleHideWinnerCheckbox}
+              key={player._id}
+            />
+          )
         )}
       </div>
     </>
