@@ -4,10 +4,15 @@ import SingleMatchPlayerLine from './SingleMatchPlayerLine'
 
 const SingleMatch = (props) => {
   const [isHidden, setIsHidden] = useState(false)
-
+  let match
   const playerMatches = gameService.getFirstPlayer(props.match)
   let gamesNeededToWin = gameService.getGameRace(props?.match[0], props?.match[1])
-  const match = [{...props.match[0], gamesNeeded: gamesNeededToWin[0]}, {...props.match[1], gamesNeeded: gamesNeededToWin[1]}]
+  console.log(props.match);
+  if(props.match[0] !== null && props.match[1] !== null ) {
+    match = [{...props?.match[0], gamesNeeded: gamesNeededToWin[0]}, {...props?.match[1], gamesNeeded: gamesNeededToWin[1]}]
+  }
+
+
 
   // need to have a way to identify which round I'm playing in. then save the players into the array of arrays for that round. might need to adjust the model on the back end to have different rounds. this way the bracket can handle people playing faster than the current round.
   // here is where I should pair the players into a matchbring in playerObj and 

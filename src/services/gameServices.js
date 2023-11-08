@@ -1,7 +1,7 @@
 
 export function getGameRace (player1, player2){
   if(player1?.name === 'bye' || player2?.name === 'bye') return 'No game'
-  
+  if(player1 === null || player2 === null) return
   let highest = Math.max(player1.rank , player2.rank)
   let lowest = Math.min(player1.rank , player2.rank)
   let difference = highest - lowest
@@ -88,7 +88,9 @@ export function SplitIntoTuples (players) {
 }
 
 export function getFirstPlayer  (game) {
+  
   function compareByValue(a, b) {
+    if(a=== null || b === null) return 
     return b.rank - a.rank;
   }
   return game.sort(compareByValue)
