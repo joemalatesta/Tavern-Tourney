@@ -13,7 +13,7 @@ const SingleMatch = (props) => {
   const handleHideWinnerCheckbox = () => {
     setIsHidden(true)
   }
-  
+  if(props.match[0] === null && props.match[1] === null ) return ''
   const handleAddWinnerToNextRound = (player) => {
     props.handleRoundPlayers(player)
   }
