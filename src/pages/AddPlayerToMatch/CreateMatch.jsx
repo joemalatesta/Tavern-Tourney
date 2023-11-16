@@ -46,7 +46,7 @@ const CreateMatch = (props) => {
     console.log('this is the formdata at submit', updatedFormData);
     navigate('/view-tournaments')
   }
-  console.log('I am showing an array of object players here',match);//I am showing an array of object players here
+
   return (
     <main className="center bracket">
       <form autoComplete="off" ref={formElement} onSubmit={handleSubmit}>
