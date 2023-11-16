@@ -4,20 +4,26 @@ import * as gameService from '../../services/gameServices'
 
 const BracketLayout = ({playerObj, user}) => { 
   const [matches, setMatches] = useState(gameService.SplitIntoTuples(playerObj));
-  // const [round, setRound] = useState([
-  //   [null, null],[null, null],[null, null],[null, null]
-  // ])
-
   const [round1, setRound1] = useState([
-    [null, null],[null, null]
-    
+    [null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null]
   ])
 
   const [round2, setRound2] = useState([
-    [null, null],
+    [null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null]
+    
+  ])
+
+  const [round3, setRound3] = useState([
+    [null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null],[null, null]
   ])
   
-  const [round3, setRound3] = useState([
+  const [round4, setRound4] = useState([
+    [null, null],[null, null],[null, null],[null, null]
+  ])
+  const [round5, setRound5] = useState([
+    [null, null],[null, null]
+  ])
+  const [round6, setRound6] = useState([
     [null, null]
   ])
  
@@ -53,6 +59,42 @@ const BracketLayout = ({playerObj, user}) => {
               playerObj={round2.flat()}
               user={user}
               matches={round2}
+              round={round3}
+              setRound={setRound3}
+            />
+          </div>
+          <div className="flex flex-column">
+            <Bracket 
+              playerObj={round3.flat()}
+              user={user}
+              matches={round3}
+              round={round4}
+              setRound={setRound4}
+            />
+          </div>
+          <div className="flex flex-column">
+            <Bracket 
+              playerObj={round4.flat()}
+              user={user}
+              matches={round4}
+              round={round5}
+              setRound={setRound5}
+            />
+          </div>
+          <div className="flex flex-column">
+            <Bracket 
+              playerObj={round5.flat()}
+              user={user}
+              matches={round5}
+              round={round6}
+              setRound={setRound6}
+            />
+          </div>
+          <div className="flex flex-column">
+            <Bracket 
+              playerObj={round6.flat()}
+              user={user}
+              matches={round6}
               round={round3}
               setRound={setRound3}
             />
